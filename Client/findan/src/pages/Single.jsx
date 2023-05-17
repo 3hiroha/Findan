@@ -1,4 +1,5 @@
 import React from 'react'
+import Menu from '../Component/Menu';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Link } from 'react-router-dom';
@@ -42,7 +43,8 @@ const Single = () => {
         </p>
         </p>
         </div>
-        <div className='menu'>m
+        <div className='menu'>
+        <Menu />
         
         </div>
 
