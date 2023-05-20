@@ -10,17 +10,18 @@ const Navbar = () => {
     <div className='navbar'>
         <div className='container'>
             <div className='logo'>
+                <Link to="/" >
                 <img src={Logo} alt='logo picture'/>
+                </Link>
             </div>
             <div className='links'>
                 <Link className='link' to="/?cat=art"><h6>ART</h6></Link>
-                <Link className='link' to="/?cat=art"><h6>SCIENCE</h6></Link>
-                <Link className='link' to="/?cat=art"><h6>TECHNOLOGY</h6></Link>
-                <Link className='link' to="/?cat=art"><h6>CINEMA</h6></Link>
-                <Link className='link' to="/?cat=art"><h6>DESIGN</h6></Link>
-                <Link className='link' to="/?cat=art"><h6>FOOD</h6></Link>
-            <span>{currentUser?.username}</span>
-            {currentUser ? <span onClick={logout}>Logout</span> 
+                <Link className='link' to="/?cat=science"><h6>SCIENCE</h6></Link>
+                <Link className='link' to="/?cat=technology"><h6>TECHNOLOGY</h6></Link>
+                <Link className='link' to="/?cat=design"><h6>DESIGN</h6></Link>
+                <Link className='link' to="/?cat=sport"><h6>SPORT</h6></Link>
+            <span><b>{currentUser?.username}</b></span>
+            {currentUser ? <Link className='link' to="/login"> <span onClick={logout}>Logout</span>  </Link>
             : 
             <Link className='link' to="/login">login</Link>}
             <span className='write'>

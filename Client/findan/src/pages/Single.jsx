@@ -1,50 +1,87 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Menu from '../Component/Menu';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import moment from "moment";
+import { AuthContext } from '../Context/AuthContext';
+import DOMPurify from "dompurify";
 const Single = () => {
+  const [post,setPost] =useState([])
+
+    const location = useLocation();
+    const Navigate = useNavigate();
+    
+
+    const postId = location.pathname.split("/")[2];
+    
+   
+
+    const {currentUser} = useContext(AuthContext);
+
+    const handleDelete = async () =>{
+      try{
+      await axios.delete(`http://localhost:8080/api/posts/${postId}`, {withCredentials:true})
+          Navigate("/");
+        } catch (err){
+          console.log(err);
+        }
+    }
+
+
+    console.log(location);
+
+    const getText = (html) =>{
+      const doc = new DOMParser().parseFromString(html, "text/html")
+      return doc.body.textContent
+    }
+
+    useEffect(() =>{
+      const fetchData = async () =>{
+        try{
+          const res = await axios.get(`http://localhost:8080/api/posts/${postId}`)
+          setPost(res.data);
+        } catch (err){
+          console.log(err);
+        }
+        // https://images.pexels.com/photos/6157049/pexels-photo-6157049.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2
+      }
+        fetchData();
+    }, [postId]);
   return (
     <div className='single'>
         <div className='content'>
-         <img src="https://images.pexels.com/photos/6157049/pexels-photo-6157049.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=''/>
+         <img src={`../upload/${post.img}`} alt=''/>
         <div className='user'>
-        <img src="https://images.pexels.com/photos/6157049/pexels-photo-6157049.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=''/>
+        {post.userImg && <img 
+        src={post.userImg}
+        alt='user pics'
+        />}
         <div className='info'>
-            <span>John</span>
-            <p>Posted 2 days ago</p>
+            <span>{post.username}</span>
+            <p>Posted {moment(post.date).fromNow()}</p>
         </div>
-        <div className='edit'>
-            <Link to={`/write?edit=2`}>
+        {currentUser.username === post.username && (<div className='edit'>
+            <Link to={`/write?edit=2`} state={post}>
                 <EditIcon fontSize='small' />
             </Link>
-        <DeleteIcon fontSize='small'  />
-        </div> 
+        <DeleteIcon fontSize='small' onClick={handleDelete} />
         </div>
-        <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio, sed asperiores cum tempore quidem ullam nulla eum facilis. Ex dignissimos nesciunt expedita praesentium vero iure perferendis corporis labore aspernatur dolore?</h1>
-        <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio, sed asperiores cum tempore quidem ullam nulla eum facilis. Ex dignissimos nesciunt expedita praesentium vero iure perferendis corporis labore aspernatur dolore?
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio, sed asperiores cum tempore quidem ullam nulla eum facilis. Ex dignissimos nesciunt expedita praesentium vero iure perferendis corporis labore aspernatur dolore?
-        <br />
-        <br />
-        <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio, sed asperiores cum tempore quidem ullam nulla eum facilis. Ex dignissimos nesciunt expedita praesentium vero iure perferendis corporis labore aspernatur dolore?
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio, sed asperiores cum tempore quidem ullam nulla eum facilis. Ex dignissimos nesciunt expedita praesentium vero iure perferendis corporis labore aspernatur dolore?
+        )} 
+        </div>
+        <h1>{post.title}</h1>
+        <p
+          dangerouslySetInnerHTML={{
+            __html: DOMPurify.sanitize(post.desc),
+          }}>
+
         </p>
-        </p>
-        <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio, sed asperiores cum tempore quidem ullam nulla eum facilis. Ex dignissimos nesciunt expedita praesentium vero iure perferendis corporis labore aspernatur dolore?
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio, sed asperiores cum tempore quidem ullam nulla eum facilis. Ex dignissimos nesciunt expedita praesentium vero iure perferendis corporis labore aspernatur dolore?
-        <br />
-        <br />
-        <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio, sed asperiores cum tempore quidem ullam nulla eum facilis. Ex dignissimos nesciunt expedita praesentium vero iure perferendis corporis labore aspernatur dolore?
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio, sed asperiores cum tempore quidem ullam nulla eum facilis. Ex dignissimos nesciunt expedita praesentium vero iure perferendis corporis labore aspernatur dolore?
-        </p>
-        </p>
+          
+        
         </div>
         <div className='menu'>
-        <Menu />
+        <Menu cat={post.cat}/>
         
         </div>
 

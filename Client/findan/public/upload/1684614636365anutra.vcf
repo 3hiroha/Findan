@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:4.0
+EMAIL;PREF=1:anutra@sit.kmutt.ac.th
+FN:Anutra Pornwadee
+ORG:King Mongkut's University of Technology Thonburi;School of Information 
+ Technology
+TITLE:Student Development Coordinator\, 02 470 9889
+N:Pornwadee;Anutra;;;
+TEL;TYPE=work;VALUE=TEXT:School of Information Technology (SIT)
+TEL;TYPE=cell;VALUE=TEXT:089 6675598
+URL;TYPE=work;VALUE=URL:http://www4.sit.kmutt.ac.th/
+UID:1c2c65d7-4923-4f3a-852b-d853b202649f
+END:VCARD

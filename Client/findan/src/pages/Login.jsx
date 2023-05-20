@@ -112,6 +112,7 @@ const Login = () => {
     const outerTheme = useTheme();
 
   return (
+    
     <div className='auth'>
         <h1>
             Login
@@ -134,6 +135,7 @@ const Login = () => {
         
         
     </div>
+    
   )
 }
 
