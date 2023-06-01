@@ -14,7 +14,8 @@ who just want to learn, this platform welcome all background!
 
 ## Database schema
 
-![Database schema](![lab_blank01_i3ensf](https://github.com/3hiroha/Findan/assets/97663526/cc576974-5083-401a-b96d-4028efb5490f))
+![lab_blank01_i3ensf](https://github.com/3hiroha/Findan/assets/97663526/3677d0a8-386e-41fe-83eb-369bd0e6a16f)
+
 
 ## To run the frontend and backend in developing mode 
 cd api to run the backend.
