@@ -3,6 +3,10 @@
 Fidan is a project that let you share a education and sports lesson for people around the world to learned, whether you're teacher or someone
 who just want to learn, this platform welcome all background!
 
+We use React on client side
+       node.js as backend
+       mySQL as the database
+
 ## Functions
 - able to create a new posts
 - read -- able to display the information from mySQL
