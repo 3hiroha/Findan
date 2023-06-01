@@ -15,10 +15,7 @@ const Navbar = () => {
                 </Link>
             </div>
             <div className='links'>
-                <Link className='link' to="/?cat=art"><h6>ART</h6></Link>
-                <Link className='link' to="/?cat=science"><h6>SCIENCE</h6></Link>
-                <Link className='link' to="/?cat=technology"><h6>TECHNOLOGY</h6></Link>
-                <Link className='link' to="/?cat=design"><h6>DESIGN</h6></Link>
+                <Link className='link' to="/?cat=Education"><h6>EDUCATION</h6></Link>
                 <Link className='link' to="/?cat=sport"><h6>SPORT</h6></Link>
             <span><b>{currentUser?.username}</b></span>
             {currentUser ? <Link className='link' to="/login"> <span onClick={logout}>Logout</span>  </Link>

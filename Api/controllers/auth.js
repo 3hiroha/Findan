@@ -45,27 +45,23 @@ export const login = (req,res) => {
             const isPAsswordCorrect = bcrypt.compareSync(req.body.password, data[0].password); // true
             
             if(!isPAsswordCorrect) return res.status(400).json("Wrong Username or Password");
+            if(isPAsswordCorrect){
+                const token = jwt.sign({id:data[0].user}, "jwtkey");
+                const {password, ...other} = data[0]
+                console.log();
+                try{
+                    res
+                        .cookie("access_token", token)
+                        .status(200)
+                        .json(other);
+    
+                }catch (err){
+                    console.log(err);
+                }
+            
+            }
 
-            const token = jwt.sign({id:data[0].user}, "jwtkey");
-            const {password, ...other} = data[0]
-            console.log();
-            res
-                .cookie("access_token", token)
-                .status(200)
-                .json(other);
-            // const token = jwt.sign(
-            //     {
-            //         id : data[0].id,
-            //     },
-            //     "ZJGX1QL7ri6BGJWj3t",
-            //     { expiresIn : "1h"}
-            // );
-            // res.cookie("user", token);
-            // res.json({
-            //     success: true,
-            //     message:"the password is correct",
-            //     user: data[0],
-            // });
+            
         
         });
 };

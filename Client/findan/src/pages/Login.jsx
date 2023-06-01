@@ -98,10 +98,15 @@ const Login = () => {
       setInputs(prev=>({...prev, [e.target.name]: e.target.value}))
     }
     const handleSumbit = async e =>{
+      
       e.preventDefault();
+      
       try{
-        login(inputs);
-        navigate("/");
+        
+        login(inputs);  
+        navigate('/')
+        
+
       }catch(err){ 
         
         setError(err.response.data); 
@@ -119,8 +124,8 @@ const Login = () => {
         </h1>
         <form>
         <ThemeProvider theme={customTheme(outerTheme)}>
-        <TextField required label="Username" variant="standard" name='username' onChange={handleChange} />
-        <TextField required label="Password" variant="standard" name='password' onChange={handleChange} />
+        <TextField requ ired label="Username" variant="standard" name='username' onChange={handleChange}  />
+        <TextField required label="Password" variant="standard" name='password' onChange={handleChange}  />
 
       </ThemeProvider>
 

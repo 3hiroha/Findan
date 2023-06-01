@@ -20,6 +20,7 @@ app.use(express.json());
 app.use(bodyParser.json({ type: "application/json" }));
 app.use(cookieParser());
 
+// stroage import from website by clicking add
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, '../client/findan/public/upload')
@@ -47,9 +48,9 @@ app.use("/api/auth",authRoutes);
 
 
 
-// app.get('/', (req,res) => {
-//     res.send('Hello World!');
-// })
+app.get('/', (req,res) => {
+    res.send('Hello World!');
+})
 
  
 

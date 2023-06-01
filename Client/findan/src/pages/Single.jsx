@@ -49,6 +49,7 @@ const Single = () => {
       }
         fetchData();
     }, [postId]);
+    
   return (
     <div className='single'>
         <div className='content'>
